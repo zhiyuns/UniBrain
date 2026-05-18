@@ -41,7 +41,7 @@ DATASET_INFO = {
     'medical_recon':{
         'RadGenome-Brain_MRI_SA': {
             'data_dir': '../../data/RadGenome-Brain_MRI/all_parquet_Reg',
-            'split_file': '../../data/RadGenome-Brain_MRI/train_val_test_split_brats.json',
+            'split_file': '../../data/RadGenome-Brain_MRI/train_val_test_split_subject.json',
             'num_files': 202,
             'num_total_samples': 1007,
             "parquet_info_path": '../../data/RadGenome-Brain_MRI/dataset_info_Reg.json', # information of the parquet files
@@ -50,7 +50,7 @@ DATASET_INFO = {
     'medical_edit':{
         'RadGenome-Brain_MRI': {
             'data_dir': '../../data/RadGenome-Brain_MRI/all_parquet_Reg',
-            'split_file': '../../data/RadGenome-Brain_MRI/train_val_test_split_brats.json',
+            'split_file': '../../data/RadGenome-Brain_MRI/train_val_test_split_subject.json',
             'num_files': 202,
             'num_total_samples': 1007,
             "parquet_info_path": '../../data/RadGenome-Brain_MRI/dataset_info_Reg.json', # information of the parquet files
