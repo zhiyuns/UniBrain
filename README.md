@@ -35,11 +35,11 @@ The code initializes UniBrain from the [BAGEL checkpoint](https://huggingface.co
 models/BAGEL-7B-MoT
 ```
 
-Download or place the BAGEL model files there before training or evaluation.
+Download or place the BAGEL model files here before training or evaluation.
 
 ## Data
 
-Training and evaluation use RadGenome brain MRI parquet data. To facilitate research, we provide all the preprocessed images and metadata [here](https://huggingface.co/datasets/Astrostellar/RadGenome-Brain_MRI_parquet).
+Training and evaluation use [RadGenome-Brain_MRI](https://huggingface.co/datasets/JiayuLei/RadGenome-Brain_MRI) dataset. To facilitate research, we provide all the preprocessed images and metadata [here](https://huggingface.co/datasets/Astrostellar/RadGenome-Brain_MRI_parquet).
 
 Please also feel free to preprocess the data yourself. 
 After downloading [RadGenome-Brain_MRI](https://huggingface.co/datasets/JiayuLei/RadGenome-Brain_MRI) and corresponding MRIs, we prepare the training data via:
@@ -55,6 +55,8 @@ The scripts output expect the dataset metadata and split files at:
 ../../data/RadGenome-Brain_MRI/dataset_info_Reg.json
 ../../data/RadGenome-Brain_MRI/train_val_test_split_subject.json
 ```
+
+Noted that each subject should contain more than one modalities for our experiments. This have been pre-filtered in our split file.
 
 ## Training
 
@@ -82,11 +84,12 @@ If your local training script leaves the final stage-3 checkpoint under a differ
 
 ## Evaluation
 
+Use your own trained model or download our [checkpoints](https://huggingface.co/Astrostellar/UniBrain) and place them in the 'results' folder.
 Run evaluation from the UniBrain repository root:
 
 ### 1. Modality Imputation
 
-Use `--task generation` to evaluate MRI modality imputation. Provide one or more input modalities and one or more target modalities:
+Use `--task generation` to evaluate MRI modality imputation. Provide one/multiple input modalities and one/multiple target modalities:
 
 ```bash
 python evaluate_metrics.py \
@@ -140,7 +143,6 @@ python evaluate_metrics.py \
 The unified task reports:
 
 - diagnosis accuracy
-- PSNR and SSIM for each generated output modality
 - generated samples and logs under `results/eval_samples/unified_<modalities_in>__<modalities_out>/`
 
 ### Evaluation Options
@@ -153,13 +155,13 @@ Common options in `evaluate_metrics.py`:
 | `--task` | `generation`, `diagnosis`, or `unified` | `unified` |
 | `--modalities_in` | Input MRI modalities | `t1n` |
 | `--modalities_out` | Target MRI modalities | `t2w t2f t1c` |
-| `--mode` | `2d` or `3d` evaluation for generation | `2d` |
-| `--sample_time` | Number of generated samples to average for unified evaluation | `1` |
+| `--mode` | `2d` or `3d` evaluation (slice-wise inference) for generation tasks | `2d` |
+| `--sample_time` | Number of generated samples to average for generation tasks | `1` |
 | `--replaced_by` | Optional path to replacement generated images for diagnosis | `None` |
 
 ## Notes
 
-- Evaluation currently assumes CUDA and uses a single 80 GB GPU device map by default.
+- Evaluation currently assumes CUDA and uses a single GPU device with over 32 GB memory by default.
 - If a fine-tuned checkpoint does not contain tokenizer/config/VAE files, `evaluate_metrics.py` links the missing files from `models/BAGEL-7B-MoT`.
 - Update paths in the scripts if your BAGEL checkpoint, RadGenome data, or output directory is stored elsewhere.
 
@@ -184,4 +186,4 @@ Please replace the placeholder citation with the final MICCAI proceedings entry 
 
 ## License
 
-This project builds on BAGEL. Please follow the licenses of this repository, BAGEL, and any datasets or pretrained checkpoints used with UniBrain.
+This project builds on BAGEL. Please follow the licenses of this repository and any datasets or pretrained checkpoints used with UniBrain.

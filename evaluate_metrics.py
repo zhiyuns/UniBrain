@@ -466,7 +466,11 @@ def run_unified_inference(model, vae_model, tokenizer, vae_transform, vit_transf
                     gt_img = all_gt_img[out_idx]
 
                     if save_path is not None:
+                        print(f"Sample {subject_name} {modalities_in}_to_{current_modality_out} {ori_size}: {think_content}")
                         os.makedirs(save_path, exist_ok=True)
+                        with open(f"{save_path}/eval_metrics.txt", 'a') as f:
+                            f.write(f"Sample {subject_name} {modalities_in}_to_{current_modality_out} {ori_size}: {think_content}\n")
+                        
                         generated_img.save(f"{save_path}/{subject_name}_{current_modality_out}_gen.png")
                         gt_img.save(f"{save_path}/{subject_name}_{current_modality_out}_gt.png")
 
