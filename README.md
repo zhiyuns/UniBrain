@@ -25,8 +25,9 @@ cd code/UniBrain
 conda create -n unibrain python=3.10 -y
 conda activate unibrain
 
+pip install torch==2.8.0 torchvision==0.23.0 torchaudio==2.8.0 --index-url https://download.pytorch.org/whl/cu128
+pip install https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3/flash_attn-2.8.3+cu12torch2.8cxx11abiFALSE-cp310-cp310-linux_x86_64.whl
 pip install -r requirements.txt
-pip install flash_attn==2.5.8 --no-build-isolation
 ```
 
 The code initializes UniBrain from the [BAGEL checkpoint](https://huggingface.co/ByteDance-Seed/BAGEL-7B-MoT). By default, scripts expect the base checkpoint under:

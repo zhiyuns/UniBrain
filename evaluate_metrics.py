@@ -30,7 +30,7 @@ The planning process is enclosed within <think> </think> tags, i.e. <think> plan
 
 diagnosis_options = {
                 'A': 'Gli',
-                'B': 'Men',
+                'B': 'Mening',
                 'C': 'Meta',
                 'D': 'Infarct',
                 'E': 'Degeneration',
@@ -139,7 +139,7 @@ def process_eval_row(row, task="generation", modalities_in=None, modalities_out=
     # 3. Add Instruction Text
     # Construct standard question prompt
     if task == 'diagnosis':
-        question = 'Based on the provided information, what is the most likely clinical diagnosis?'
+        question = 'Based on the provided information, provide a detailed impression of the observed structures and any potential issues, and tell me what is the most likely clinical diagnosis?'
         instruction = question
     elif task == 'generation' or task == 'unified':
         target_string = target_mod_names[0].replace('t2f','T2-FLAIR')
@@ -220,6 +220,8 @@ def run_understanding_inference(model, vae_model, tokenizer, vae_transform, vit_
             df = fr.read_row_group(row_group_id).to_pandas()
             df = df.iloc[row_start_id:]
         for row_idx, row in df.iterrows():
+            subject_modality_names = row["modality_names"]
+            subject_name = '-'.join(subject_modality_names[0].split('-')[:-1])
             # Prepare Data
             input_list, _ , gt_label, _ , _ = process_eval_row(row, task=task, modalities_in=modalities_in, replaced_by=replaced_by)
             
@@ -255,10 +257,10 @@ def run_understanding_inference(model, vae_model, tokenizer, vae_transform, vit_
                     "raw_output": output_list
                 })
                 
-                print(f"Sample {row_idx}: GT={gt_label}, Pred={pred_label}, Correct={is_correct}")
+                print(f"Sample {subject_name}: GT={gt_label}, Pred={pred_label}, Correct={is_correct}")
 
             except Exception as e:
-                print(f"Error on sample {row_idx}: {e}")
+                print(f"Error on sample {subject_name}: {e}")
                 continue
 
     return correct_count, total_count, results_log
@@ -474,7 +476,7 @@ def run_unified_inference(model, vae_model, tokenizer, vae_transform, vit_transf
                         generated_img.save(f"{save_path}/{subject_name}_{current_modality_out}_gen.png")
                         gt_img.save(f"{save_path}/{subject_name}_{current_modality_out}_gt.png")
 
-            final_instruction = 'Based on the provided information, what is the most likely clinical diagnosis?'
+            final_instruction = 'Based on the provided information, provide a detailed impression of the observed structures and any potential issues, and tell me what is the most likely clinical diagnosis?'
             gen_context = inferencer.update_context_text(final_instruction, gen_context)
             pred_label = inferencer.gen_text(gen_context, do_sample=do_sample, temperature=text_temperature, max_length=max_think_token_n)
             is_correct = gt_label.lower() in pred_label.lower()  # (pred_label == gt_label)
