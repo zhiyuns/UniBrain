@@ -86,6 +86,11 @@ If your local training script leaves the final stage-3 checkpoint under a differ
 ## Evaluation
 
 Use your own trained model or download our [checkpoints](https://huggingface.co/Astrostellar/UniBrain) and place them in the 'results' folder.
+Feel free to download and use the last-stage (stage-3) checkpoint if you don't want to reproduce the ablation studies:
+```bash
+huggingface-cli download Astrostellar/UniBrain --include checkpoints_s3/ --local-dir ./results --local-dir-use-symlinks False
+```
+
 Run evaluation from the UniBrain repository root:
 
 ### 1. Modality Imputation
@@ -131,7 +136,7 @@ The diagnosis task reports correct count, total count, and accuracy.
 
 ### 3. Unified Generation and Understanding
 
-Use `--task unified` to generate target modalities and then perform diagnosis in the same context:
+Use `--task unified` to generate target modalities and then perform diagnosis in the same context, feel free to change the order/number of input/target modalities to evaluate the robustness:
 
 ```bash
 python evaluate_metrics.py \
@@ -187,4 +192,4 @@ Please replace the placeholder citation with the final MICCAI proceedings entry 
 
 ## License
 
-This project builds on BAGEL. Please follow the licenses of this repository and any datasets or pretrained checkpoints used with UniBrain.
+This project builds on [BAGEL](https://github.com/ByteDance-Seed/Bagel) and [AutoRG-Brain](https://github.com/ljy19970415/AutoRG-Brain). Please follow the licenses of this repository and any datasets or pretrained checkpoints used with UniBrain.
