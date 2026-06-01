@@ -17,7 +17,7 @@ from .data_utils import (
 )
 from .dataset_info import DATASET_INFO, DATASET_REGISTRY
 from .transforms import ImageTransform
-from .video_utils import FrameSampler
+# from .video_utils import FrameSampler
 
 
 class DataConfig:
@@ -50,9 +50,9 @@ def build_datasets(local_rank, tokenizer, world_size, num_workers, datasets_meta
         is_mandatory.append(dataset_args.pop('is_mandatory', False))
         grouped_weights.append(dataset_args.pop('weight', 0.0))
 
-        if 'frame_sampler_args' in dataset_args.keys():
-            frame_sampler = FrameSampler(**dataset_args.pop('frame_sampler_args'))
-            dataset_args['frame_sampler'] = frame_sampler
+        # if 'frame_sampler_args' in dataset_args.keys():
+        #     frame_sampler = FrameSampler(**dataset_args.pop('frame_sampler_args'))
+        #     dataset_args['frame_sampler'] = frame_sampler
         if 'image_transform_args' in dataset_args.keys():
             transform = ImageTransform(**dataset_args.pop('image_transform_args'))
             dataset_args['transform'] = transform

@@ -301,7 +301,7 @@ class InterleaveInferencer:
 
                 elif isinstance(input_term, Image.Image):
                     input_term = self.vae_transform.resize_transform(pil_img2rgb(input_term))
-                    gen_context = self.update_context_image(input_term, gen_context, vae= not understanding_output)
+                    gen_context = self.update_context_image(input_term, gen_context, vae=True)
 
                     image_shapes = input_term.size[::-1]
                     cfg_text_context = deepcopy(gen_context)
