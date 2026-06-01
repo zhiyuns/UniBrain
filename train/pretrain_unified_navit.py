@@ -6,7 +6,6 @@ import gc
 import os
 import wandb
 import yaml
-import random
 import numpy as np
 from copy import deepcopy
 from dataclasses import dataclass, field
