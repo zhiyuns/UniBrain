@@ -1,27 +1,12 @@
 # UniBrain
 
-Official implementation for our MICCAI 2026 paper **UniBrain**: Unified Multimodal Model for Brain MRI Imputation and Understanding
-
-<p align="center">
-  <a href="https://medicalumm.github.io/unibrain.github.io/">
-    <img
-      src="https://img.shields.io/badge/UniBrain-Website-0A66C2?logo=safari&logoColor=white"
-      alt="UniBrain Website"
-    />
-  </a>
-  <a href="https://huggingface.co/Astrostellar/UniBrain">
-    <img
-      src="https://img.shields.io/badge/UniBrain-Model-yellow?logo=huggingface&logoColor=yellow"
-      alt="UniBrain Model"
-    />
-  </a>
-  <a href="https://arxiv.org/abs">
-    <img
-      src="https://img.shields.io/badge/UniBrain-Paper-red?logo=arxiv&logoColor=red"
-      alt="UniBrain Paper on arXiv"
-    />
-  </a>
+<p align="left">
+  <a href="https://medicalumm.github.io/unibrain.github.io/"><img src="https://img.shields.io/badge/UniBrain-Website-0A66C2?logo=safari&logoColor=white" alt="UniBrain Website" /></a>
+  <a href="https://huggingface.co/Astrostellar/UniBrain"><img src="https://img.shields.io/badge/UniBrain-Model-yellow?logo=huggingface&logoColor=yellow" alt="UniBrain Model" /></a>
+  <a href="https://arxiv.org/abs/2311.08225"><img src="https://img.shields.io/badge/UniBrain-Paper-red?logo=arxiv&logoColor=red" alt="UniBrain Paper on arXiv" /></a>
 </p>
+
+Official implementation for our MICCAI 2026 paper **UniBrain**: Unified Multimodal Model for Brain MRI Imputation and Understanding
 
 <p align="center">
   <img src="assets/main_figure.png" alt="UniBrain overview" width="95%">
