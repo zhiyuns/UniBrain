@@ -3,7 +3,7 @@
 <p align="left">
   <a href="https://medicalumm.github.io/unibrain.github.io/"><img src="https://img.shields.io/badge/UniBrain-Website-0A66C2?logo=safari&logoColor=white" alt="UniBrain Website" /></a>
   <a href="https://huggingface.co/Astrostellar/UniBrain"><img src="https://img.shields.io/badge/UniBrain-Model-yellow?logo=huggingface&logoColor=yellow" alt="UniBrain Model" /></a>
-  <a href="https://arxiv.org/abs/2311.08225"><img src="https://img.shields.io/badge/UniBrain-Paper-red?logo=arxiv&logoColor=red" alt="UniBrain Paper on arXiv" /></a>
+  <a href="https://arxiv.org/abs/2606.16484"><img src="https://img.shields.io/badge/UniBrain-Paper-red?logo=arxiv&logoColor=red" alt="UniBrain Paper on arXiv" /></a>
 </p>
 
 Official implementation for our MICCAI 2026 paper **UniBrain**: Unified Multimodal Model for Brain MRI Imputation and Understanding
@@ -180,21 +180,17 @@ Common options in `evaluate_metrics.py`:
 ## Acknowledgement
 
 This repository is adapted from [BAGEL](https://github.com/ByteDance-Seed/Bagel), a unified multimodal foundation model for natural images. We thank the BAGEL authors for releasing their code and model.
-<!-- 
+
 ## Citation
 
-If you use UniBrain in your research, please cite our MICCAI paper:
-
 ```bibtex
-@inproceedings{unibrain2026,
-  title     = {Unified Multimodal Model for Brain MRI Imputation and Understanding},
-  author    = {Zhiyun Song, Che Liu, Tian Xia, Avinash Kori, Wenjia Bai},
-  booktitle = {Medical Image Computing and Computer Assisted Intervention (MICCAI)},
-  year      = {2026}
+@article{unibrain2026,
+  title   = {Unified Multimodal Model for Brain MRI Imputation and Understanding},
+  author  = {Zhiyun Song, Che Liu, Tian Xia, Avinash Kori, Wenjia Bai},
+  journal = {arXiv preprint arXiv:2606.16484},
+  year    = {2026}
 }
 ```
-
-Please replace the placeholder citation with the final MICCAI proceedings entry when available. -->
 
 ## License
 
